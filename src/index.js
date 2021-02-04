@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import store from './store.js'
 //import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+ 
 
 
 
@@ -21,5 +23,5 @@ import store from './store.js'
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-ReactDOM.render(<Provider store={ store }><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={ store }><Router><App /></Router></Provider>, document.getElementById('root'));
 //serviceWorker.unregister();

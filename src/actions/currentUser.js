@@ -1,4 +1,7 @@
 import { resetLoginForm } from "./loginForm.js"
+import { getMyTrips } from "./myTrips.js"
+import { resetSignupForm } from "./signupForm.js"
+
 //synchronus action creators = plain java obj
 export const setCurrentUser = user => {
     return {
@@ -33,6 +36,7 @@ export const login = credentials => {
                     alert(response.error)  
                 } else {
                   dispatch(setCurrentUser(response.data))
+                  dispatch(getMyTrips())
                   dispatch(resetLoginForm())
                 }
             })
@@ -40,6 +44,37 @@ export const login = credentials => {
 
     }
 }
+
+export const signup = (credentials, history) => {
+    return dispatch => {
+      const userInfo = {
+        user: credentials
+      }
+      return fetch("http://localhost:3001/api/v1/signup", {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userInfo)
+      })
+        .then(r => r.json())
+        .then(response => {
+          if (response.error) {
+            alert(response.error)
+          } else {
+            dispatch(setCurrentUser(response.data))
+            dispatch(getMyTrips())
+            dispatch(resetSignupForm())
+            history.push('/')
+          }
+        })
+        .catch(console.log)
+    }
+  }
+  
+
+
 
 export const logout = () => {
     return dispatch => {
@@ -68,6 +103,8 @@ export const getCurrentUser = () => {
                     alert(response.error)  
                 } else {
                   dispatch(setCurrentUser(response.data))  
+                  dispatch (getMyTrips())
+                  dispatch(resetSignupForm())
                 }
             })
             .catch(console.log)

@@ -3,11 +3,17 @@ import usersReducer from './reducers/users.js'
 import currentUser from './reducers/currentUser.js'
 import  thunk from 'redux-thunk'
 import loginForm from './reducers/loginForm.js'
+import myTrips from './reducers/myTrips.js'
+import signupForm from './reducers/signupForm.js'
+
+
 
 const reducer = combineReducers({
     users: usersReducer,
     currentUser,
-    loginForm
+    loginForm,
+    myTrips,
+    signupForm
 
   
   
