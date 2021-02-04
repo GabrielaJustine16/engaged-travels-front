@@ -1,4 +1,4 @@
-
+import { resetLoginForm } from "./loginForm.js"
 //synchronus action creators = plain java obj
 export const setCurrentUser = user => {
     return {
@@ -32,7 +32,8 @@ export const login = credentials => {
                 if (response.error) {
                     alert(response.error)  
                 } else {
-                  dispatch(setCurrentUser(response.data))  
+                  dispatch(setCurrentUser(response.data))
+                  dispatch(resetLoginForm())
                 }
             })
             .catch(console.log)

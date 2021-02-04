@@ -4,3 +4,9 @@ export const updateLoginForm = (formData) => {
         formData
     }
 }
+
+export const resetLoginForm = (f) => {
+    return {
+        type: "RESET_LOGIN_FORM",
+    }
+}
