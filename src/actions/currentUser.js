@@ -28,11 +28,11 @@ export const login = credentials => {
 //dispact current user
         })
             .then(r => r.json())
-            .then(user => {
-                if (user.error) {
-                    alert(user.error)  
+            .then(response => {
+                if (response.error) {
+                    alert(response.error)  
                 } else {
-                  dispatch(setCurrentUser(user))  
+                  dispatch(setCurrentUser(response.data))  
                 }
             })
             .catch(console.log)
@@ -62,11 +62,11 @@ export const getCurrentUser = () => {
 //dispact current user
         })
             .then(r => r.json())
-            .then(user => {
-                if (user.error) {
-                    alert(user.error)  
+            .then(response => {
+                if (response.error) {
+                    alert(response.error)  
                 } else {
-                  dispatch(setCurrentUser(user))  
+                  dispatch(setCurrentUser(response.data))  
                 }
             })
             .catch(console.log)
