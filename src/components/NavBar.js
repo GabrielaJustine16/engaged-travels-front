@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 import Logout from './Logout'
+import { NavLink } from 'react-router-dom'
+
 
 //
 const NavBar = ({ currentUser, loggedIn }) => {
@@ -14,11 +15,6 @@ const NavBar = ({ currentUser, loggedIn }) => {
   )
 }
 
-// I an do this because I know the incoming argument is an object, state, coming from redux
-// and I know it has a property called currentUser
-// state = { ...,
-//   currentUser: {...}
-// }
 
 const mapStateToProps = ({ currentUser }) => {
   return {

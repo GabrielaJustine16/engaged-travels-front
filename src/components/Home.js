@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Home = () => (
   <div>
+    <h1 id="title">  Welcome To Engaged Travels</h1>
     <span>
       <Link to="/signup">Sign Up</Link> or <Link to="/login">Log In</Link>
     </span>

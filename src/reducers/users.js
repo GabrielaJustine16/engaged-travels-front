@@ -4,4 +4,3 @@ export default (state = [], action) => {
             return state 
     }
 }
-//this will return default state of all of our users

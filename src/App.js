@@ -1,43 +1,51 @@
 import React from 'react';
 import './App.css';
-
 import { connect } from 'react-redux'
 import { getCurrentUser } from "./actions/currentUser.js"
 import NavBar from './components/NavBar.js'
 import Login from './components/Login.js'
-import MyTrips from './components/MyTrips.js'
 import Signup from './components/Signup.js'
+import TripCard from './components/TripCard.js'
+import NewTripFormWrapper from './components/NewTripFormWrapper.js'
+import EditTripFormWrapper from './components/EditTripFormWrapper.js'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import MyTrips from './components/MyTrips.js'
+import Home from './components/Home.js'
 
 
-import { Route, Switch } from 'react-router-dom'
-import Home from './components/Home.js';
-/*import { render } from '@testing-library/react';*/
 
 class App extends React.Component {
-//save user
+
   componentDidMount() {
     this.props.getCurrentUser()
-
- 
   }
 
-  render() {
+  render(){
     const { loggedIn, trips } = this.props
-
-    return ( 
-      
-      <div className="App"> 
-        <NavBar/>
-          <Route exact path='/' render={()=> loggedIn ? <MyTrips/> : <Home/>}/>
-          <Route exact path='/signup' component={Signup}/>
+    return (
+      <div className="App">
+        { loggedIn ? <NavBar location={this.props.location}/> : <Home/> }
+        <Switch>
+          <Route exact path='/signup' render={({history})=><Signup history={history}/>}/>
           <Route exact path='/login' component={Login}/>
-          <Route exact path='/my-trips' component={MyTrips}/>
+          <Route exact path='/trips' component={MyTrips}/>
+          <Route exact path='/trips/new' component={NewTripFormWrapper}/>
+          <Route exact path='/trips/:id' render={props => {
+              const trip = trips.find(trip => trip.id === props.match.params.id)
+              console.log(trip)
+              return <TripCard trip={trip} {...props}/>
+            }
+          }/>
+          <Route exact path='/trips/:id/edit' render={props => {
+              const trip = trips.find(trip => trip.id === props.match.params.id)
+              return <EditTripFormWrapper trip={trip} {...props}/>
+            }
+          }/>
+        </Switch>
       </div>
-      
-    
-  );
- }
+    );
 
+  }
 }
 
 const mapStateToProps = state => {
@@ -46,8 +54,5 @@ const mapStateToProps = state => {
     trips: state.myTrips
   })
 }
-//deconstruct it. i cn do this bc i know the incomeing argument is an object, state,coming from redux
-//i know the property is called current user
 
-
-export default (connect(mapStateToProps, { getCurrentUser })(App));
+export default withRouter(connect(mapStateToProps, { getCurrentUser })(App));
