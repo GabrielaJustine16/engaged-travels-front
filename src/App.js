@@ -14,6 +14,7 @@ import Home from './components/Home.js'
 
 
 
+
 class App extends React.Component {
 
   componentDidMount() {
@@ -30,17 +31,18 @@ class App extends React.Component {
           <Route exact path='/login' component={Login}/>
           <Route exact path='/trips' component={MyTrips}/>
           <Route exact path='/trips/new' component={NewTripFormWrapper}/>
-          <Route exact path='/trips/:id' render={props => {
+          <Route exact path='/trips/:id'  render={props => {
               const trip = trips.find(trip => trip.id === props.match.params.id)
               console.log(trip)
               return <TripCard trip={trip} {...props}/>
+              
             }
           }/>
           <Route exact path='/trips/:id/edit' render={props => {
               const trip = trips.find(trip => trip.id === props.match.params.id)
               return <EditTripFormWrapper trip={trip} {...props}/>
             }
-          }/>
+          }/>q
         </Switch>
       </div>
     );

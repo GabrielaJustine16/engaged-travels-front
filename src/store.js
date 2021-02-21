@@ -7,12 +7,15 @@ import signupForm from './reducers/signupForm'
 import tripForm from './reducers/tripForm'
 import thunk from 'redux-thunk'
 
+
+
 const reducer = combineReducers({
   currentUser,
   loginForm,
   myTrips,
   signupForm,
   tripForm
+  
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

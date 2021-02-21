@@ -63,7 +63,8 @@ export const createTrip = (tripData, history) => {
       start_date: tripData.startDate,
       end_date: tripData.endDate,
       name: tripData.name,
-      user_id: tripData.userId
+      user_id: tripData.userId,
+      likes: 0
     }
     return fetch("http://localhost:3001/api/v1/trips", {
       credentials: "include",
@@ -94,7 +95,8 @@ export const updateTrip = (tripData, history) => {
     const sendableTripData = {
       start_date: tripData.startDate,
       end_date: tripData.endDate,
-      name: tripData.name
+      name: tripData.name,
+      likes: tripData.likes
     }
     return fetch(`http://localhost:3001/api/v1/trips/${tripData.tripId}`, {
       credentials: "include",
